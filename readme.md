@@ -32,7 +32,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-Esse portifolio foi um projeto resultado do curso da rocketseat.
+Esse projeto é um agregador de links para usar como cartão de visitas online.
 
 ## 🔖 Layout
 
