@@ -11,13 +11,12 @@
   --surface-color-hover: rgba(0, 0, 0, 0.02);
   --highlight-color: rgba(255, 255, 255, 0.2);
   --switch-bg-url: url(assets/moon-stars.svg);
-  -switch-daminhabunda: rgba();
 }
 .light {
   --text-color: black;
   --bg-url: url(assets/bg-mobile-light.jpg);
   --stroke-color: rgba(0, 0, 0, 0.5);
-  --surface-color: rgba(0, 0, 0, 0.05);
+  --surface-color: rgba(0, 0, 0, 0.1);
   --surface-color-hover: rgba(0, 0, 0, 0.02);
   --highlight-color: rgba(0, 0, 0, 0.1);
   --switch-bg-url: url(assets/sun-stars.svg);
@@ -30,6 +29,7 @@ body {
   */
   /*background: color image repeat position/size */
   background: var(--bg-url) no-repeat top center/cover;
+
   height: 100vh;
 }
 
@@ -51,6 +51,10 @@ body * {
 #profile img {
   width: 112px;
   margin: auto;
+  transition: transform 5s ease-in-out;
+}
+#profile img:hover {
+  transform: rotate(360deg);
 }
 #profile p {
   font-weight: 500;
@@ -63,8 +67,7 @@ body * {
   margin: 4px auto;
 }
 .light #switch button {
-  right: 0;
-  left: initial;
+  animation: slide-in 0.4s forwards;
 }
 #switch button {
   width: 32px;
@@ -76,13 +79,17 @@ body * {
   top: 50%;
   z-index: 1;
   transform: translateY(-50%);
+  animation: slide-out 0.4s;
+}
+#switch button:hover {
+  outline: 8px solid var(--highlight-color);
 }
 #switch span {
   display: block;
   width: 64px;
   height: 24px;
   background: var(--surface-color);
-  border: 1px solid var(--stroke-color);
+  border: 1.5px solid var(--stroke-color);
   -webkit-backdrop-filter: blur(4px);
   border-radius: 9999px;
 }
@@ -95,21 +102,30 @@ ul {
   padding: 24px 0;
 }
 ul li a {
-  border: 1px solid var(--stroke-color);
+  border: 1.2px solid var(--stroke-color);
   border-radius: 8px;
   align-items: center;
   display: flex;
   justify-content: center;
   padding: 16px 24px;
-  background: var(--surface-color);
+  background-image: linear-gradient(
+    90deg,
+    var(--surface-color),
+    var(--surface-color-hover),
+    var(--surface-color)
+  );
+  background-size: 300% auto;
+  background-position: 0 center;
+  /* background: var(--surface-color); */
   -webkit-backdrop-filter: blur(4px);
   text-decoration: none;
   font-weight: 500;
   transition: background 0.2s;
 }
 ul li a:hover {
-  background: var(--surface-color-hover);
+  /*background: var(--surface-color-hover);*/
   border: 1.5px solid var(--text-color);
+  animation: btn-gradient-slide 3s ease-in-out infinite alternate;
 }
 /* icones de redes sociais */
 #social-links {
@@ -142,9 +158,34 @@ footer {
   :root {
     --bg-url: url(/assets/bg-desktop.jpg);
   }
-    .light {
-      --bg-url: url(/assets/bg-desktop-light.jpg);
-    }
+  .light {
+    --bg-url: url(/assets/bg-desktop-light.jpg);
+  }
+}
+/* animation */
+@keyframes slide-in {
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+}
+@keyframes slide-out {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0%;
+  }
+}
+/* conteúdo extra do Iguin */
+@keyframes btn-gradient-slide {
+  0% {
+    background-position: 0 center;
+  }
+  100% {
+    background-position: 200% center;
   }
 }
 
